@@ -1,0 +1,41 @@
+<%- include('partials/heading') -%>
+    <style>
+        .page-holder {
+            min-height: 100vh;
+        }
+        
+        .bg-cover {
+            background-size: cover !important;
+        }
+    </style>
+
+    <div class="container-fluid page-holder bg-cover" style="background: url(https://www.novascotia.com/sites/default/files/2020-09/Graves-Island-camping-stars.jpg) fixed">
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="text-center">Welcome to Yelpcamp !</h1>
+                <p class="text-center">Sign up to see our hand-picked campgrounds from all over the world</p>
+            </div>
+
+        </div>
+        <div style="margin-top: 60px; padding-bottom:40px;" class="container">
+            <form action="/register" , method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+
+
+    <%- include('partials/footer') -%>

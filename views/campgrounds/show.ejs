@@ -1,0 +1,108 @@
+<%- include('../partials/heading') -%>
+    <a style="margin: 0px auto;" href="/campgrounds" class="btn btn-warning">Back to Campgrounds</a>
+
+    <div class="container-fluid">
+
+        <h3 class="text-center my-3">
+            <%= campground.name %>
+        </h3>
+
+        <div class="row flex-column-reverse flex-sm-row">
+
+            <div class="col-sm-3  my-5">
+                <div class="list-group">
+                    <li class="list-group-item active">Info 1</li>
+                    <li class="list-group-item">Info 2</li>
+                    <li class="list-group-item">Info 3</li>
+                </div>
+
+
+            </div>
+            <div class="col-sm-6">
+                <h6>
+                    Created By :
+                    <strong><%= campground.author.username%></strong>
+                </h6>
+                <img class="img-thumbnail" src="<%=campground.image%>" alt="img item">
+                <div class="caption-full">
+                    <h5 class="pull-right">
+                        $<span><%= campground.price %>/night</span>
+                    </h5>
+
+                    <% if( currentuser ){ %>
+                        <% var userid = currentuser._id.toString(), campgroundauthor = campground.author.id.toString() %>
+                            <% if(userid === campgroundauthor ){ %>
+                                <small> <a href="/campgrounds/<%=campground._id%>/edit" class="btn btn-warning btn-sm">update</a></small>
+                                <form class="del-upd-form" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                                    <small> <button class="btn btn-danger btn-sm">Delete</button></small>
+                                </form>
+                                <%}}%>
+                </div>
+
+                <div style="padding-bottom:100px" class="container  justify-content-center mt-5 border-left border-right bg-success text-center">
+                    <% if(currentuser){ %>
+                        <form action="/campgrounds/<%=campground._id%>/comments" , method="POST">
+
+                            <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="comment[text]" placeholder="+ Add a comment" class="form-control addtxt"> </div>
+
+                        </form>
+                        <%}%>
+
+                            <div class=" py-2 px-2">
+                                <% campground.comments.forEach(function(comment){ %>
+
+                                    <div class="container">
+                                        <div class="border-bottom border-light border-3 d-flex flex-row justify-content-between m-3">
+                                            <div id="commentcontainer" class="mt-4">
+                                                <%= comment.text %>
+                                            </div>
+                                            <div class="font-weight-bold mb-4 border-bottom bordr-light  ">
+                                                <i class="fad fa-user-circle fa-2x"></i>
+                                                <%= comment.author.username %>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class=" left ">
+                                        <% if( currentuser ){ %>
+                                            <% var userid = currentuser._id.toString(), commentauthor = comment.author.id.toString() %>
+                                                <% if(userid === commentauthor ){ %>
+                                                    <small> <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit" class="btn btn-warning btn-sm">update</a></small>
+                                                    <form class="del-upd-form" action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                                        <small> <button class="btn btn-danger btn-sm">Delete</button></small>
+                                                    </form>
+                                                    <span class="thumbup btn btn-success">
+                                                            <i class="far fa-thumbs-up"></i> 3 </span>
+                                                    <%}else{%>
+                                                        <span class="thumbup btn btn-success">
+                                                        <i class="far fa-thumbs-up"></i> 3 </span>
+                                                        <%}}else{%>
+                                                            <span class="thumbup btn btn-success">
+                                                                        <i class="far fa-thumbs-up"></i> 3 </span>
+                                                            <%}%>
+
+                                    </div>
+                                    <% }) %>
+
+                            </div>
+                </div>
+                <% if(currentuser){ %>
+                    <a href="/campgrounds/<%=campground._id%>/comments/new" class="btn btn-success mt-3">Add Comment</a>
+                    <%}%>
+            </div>
+            <div class="col-sm-3 border-left border-right border-light">
+                <div class="container">
+
+                    <h5 class="text-center border-bottom border-light mt-4"> Description </h5>
+                    <p class="text-center my-3 ">
+                        <%= campground.desc %>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <%- include( '../partials/footer') -%>

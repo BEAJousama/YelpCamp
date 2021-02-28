@@ -1,0 +1,12 @@
+body {
+    font-family: 'Comfortaa', sans-serif;
+}
+
+.del-upd-form {
+    display: inline;
+}
+
+#commentcontainer {
+    max-width: 400px;
+    overflow: -moz-hidden-unscrollable;
+}
