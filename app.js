@@ -14,7 +14,7 @@ var commentRoutes = require("./routes/comments"),
     campgroundRoutes = require("./routes/campground"),
     indexRoutes = require("./routes/index");
 
-// mongoose.connect("mongodb://127.0.0.1:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect("mongodb://127.0.0.1:27017/yelp_camp", { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true, useUnifiedTopology: true });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -47,31 +47,3 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 app.listen(process.env.PORT || 3000, function() {
     console.log("server has been started");
 });
-
-
-
-// Compground.create({
-//     name: "Salmon geek",
-//     image: "https://img.campercontact.com/media/photos/4222124650740271.jpg",
-//     desc: "Hello and welcom to salmon creek"
-// }, function(err, campground) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("New Camp Has been created");
-//         console.log(campground);
-//         Comment.create({
-//             text: "This is a beatiful place to be in",
-//             author: "Beaj Ousama"
-//         }, function(err, comment) {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 console.log("New comment created");
-//                 campground.comments.push(comment);
-//                 campground.save();
-//             }
-
-//         });
-//     }
-// });

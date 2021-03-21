@@ -1,5 +1,5 @@
 <%- include('../partials/heading') -%>
-    <a style="margin: 0px auto;" href="/campgrounds" class="btn btn-warning">Back to Campgrounds</a>
+    <a style="margin: 0px auto;" href="/campgrounds" class="btn btn-light">Back to Campgrounds</a>
 
     <div class="container-fluid">
 
@@ -39,7 +39,7 @@
                                 <%}}%>
                 </div>
 
-                <div style="padding-bottom:100px" class="container  justify-content-center mt-5 border-left border-right bg-success text-center">
+                <div style="padding-bottom:100px" class="container  justify-content-center mt-5 border-left border-right bg-light text-center">
                     <% if(currentuser){ %>
                         <form action="/campgrounds/<%=campground._id%>/comments" , method="POST">
 
