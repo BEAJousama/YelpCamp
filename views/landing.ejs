@@ -12,26 +12,38 @@
     <div class="container-fluid page-holder bg-cover" style="background: url(https://www.novascotia.com/sites/default/files/2020-09/Graves-Island-camping-stars.jpg) fixed">
         <div class="jumbotron">
             <div class="container">
-                <h1 class="text-center">Welcome to Yelpcamp !</h1>
-                <p class="text-center">Login to see our hand-picked campgrounds from all over the world</p>
-                <a href="/campgrounds" class="btn btn-success">view Compgrounds</a>
+                <% if (!currentuser){%>
+                    <h1 class="text-center">Welcome to Yelpcamp !</h1>
+                    <p class="text-center">Login to see our hand-picked campgrounds from all over the world</p>
+                    <% }else{%>
+                        <h1 class="text-center">Welcome to Yelpcamp
+                            <%=currentuser.username%> !</h1>
+                        <p class="text-center">See our hand-picked campgrounds from all over the world</p>
+                        <% }%>
+                            <a href="/campgrounds" class="btn btn-success">view Compgrounds</a>
+
+
+
             </div>
 
         </div>
-        <div style="margin-top: 60px; padding-bottom:40px;" class="container">
-            <form action="/login" , method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block">Login</button>
-                </div>
-                <h4 class="text-center text-white">Don't have an account <strong>SignUp </strong><a href="/register">here</a> </h4>
-            </form>
-        </div>
+        <% if (!currentuser){%>
+            <div style="margin-top: 60px; padding-bottom:40px;" class="container">
+                <form action="/login" , method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </div>
+                    <h4 class="text-center text-white">Don't have an account <strong>SignUp </strong><a href="/register">here</a> </h4>
+                </form>
+            </div>
+            <% }%>
+
 
 
     </div>
